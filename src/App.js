@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import QuizOptions from "./pages/QuizOptions";
+//verbal reasoning quiz
+import Quiz1 from "./pages/verbal_reasoning/Quiz";
+import Quiz4 from "./pages/numerical/Quiz"
+//
+// import Quiz2 from "../pages/"
+import {BrowserRouter as Router,Routes, Route} from "react-router-dom";
+
 
 function App() {
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={ <QuizOptions/>} />
+        <Route path="/quiz/verbal_reasoning" element={<Quiz1/>} />
+        <Route path="/quiz/numerical" element={<Quiz4/>}/>
+      </Routes>
     </div>
+    </Router>
   );
 }
 

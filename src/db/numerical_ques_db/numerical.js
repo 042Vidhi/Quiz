@@ -1,0 +1,97 @@
+import q1 from './q1.png'
+import q2 from './q2.png'
+import q3 from './q3.png'
+
+export const quiz4 ={
+    quizId:4,
+    quizName:"Numerical Assessment",
+    category:"Numerical",
+    totalQuestions:10,
+    totalTime:"15 mins",
+    questions : [
+        {
+            Sno:1,
+            type:"MCQ",
+            attachment:q1,
+            question:"Which agent has the lowest call resolution?",
+            options : ["Agent A","Agent B","Agent C","Agent D"],
+            correctAnswer:"Agent B",
+            explanation:"",
+        },
+        {
+            Sno:2,
+            type:"MCQ",
+            attachment:q1,
+            question:"When a new employee joined, their rating was 3 points lower than the highest score. What was the rating of the new employee?",
+            options : ["7","4","8","6"],
+            correctAnswer:"6",
+            explanation:"",
+        },
+        {
+            Sno:3,
+            type:"MCQ",
+            attachment:q1,
+            question:"If agent C's average handling time goes up by 5 percent, what would be their new average call handling time?",
+            options : ["40","50","60","90"],
+            correctAnswer:"50",
+            explanation:"",
+        },
+        {
+            Sno:4,
+            type:"Floating Type",
+            attachment:q2,
+            question:"What is the total sales for the first five months?",
+            correctAnswer:"610000",
+            explanation:"$120K + $95K + $150K + $110K + $135K = $610,000",
+        },
+        {
+            Sno:5,
+            type:"Floating Type",
+            attachment:q2,
+            question:"What is the average sales per month for the given period?",
+            correctAnswer:"122000",
+            explanation:"Total sales / Number of months = $610,000 / 5 = $122,000",
+        },
+        {
+            Sno:6,
+            type:"Floating Type",
+            attachment:q2,
+            question:"Calculate the percentage increase in sales from February to March.(Round off to nearest Integer)",
+            correctAnswer:"58",
+            explanation:"Percentage increase from February to March: [(March sales - February sales) / February sales] * 100% [($150K - $95K) / $95K] * 100% = (55 / 95) * 100% ≈ 57.89%",
+        },
+        {
+            Sno:7,
+            type:"MCQ",
+            attachment:q2,
+            question:"Identify the month with the highest sales and the month with the lowest sales.",
+            options : ["March & Feburary","January & Feburary","April & May","March & May"],
+            correctAnswer:"March & Feburary",
+            explanation:"Highest sales month: March with $150,000 & Lowest sales month: February with $95,000",
+        },
+        {
+            Sno:8,
+            type:"Floating Type",
+            attachment:q3,
+            question:"Compare the total sales in April and May. How much higher or lower are the sales in May compared to April?",
+            correctAnswer:"25000",
+            explanation:"Difference in sales between April and May:May sales - April sales = $135,000 - $110,000 = $25,000 .The sales in May are $25,000 higher than April",
+        },
+        {
+            Sno:9,
+            type:"Floating Type",
+            attachment:q3,
+            question:"If the trip with an arrival time of 08:00 AM and a departure time of 12:00 PM included an unexpected delay of 45 minutes, at what time did the trip actually depart?",
+            correctAnswer:"1245",
+            explanation:"Actual departure time = Departure time + Delay. Actual departure time = 12:00 PM + 45 minutes = 12:45 PM. The trip actually departed at 12:45 PM due to the delay. ",
+        },
+        {
+            Sno:10,
+            type:"Floating Type",
+            attachment:q3,
+            question:"If the cost per person for the trip with an arrival time of 09:30 AM and a departure time of 02:00 PM increased by 15%, what would be the new cost per person?",
+            correctAnswer:"74.75",
+            explanation:"Original cost per person = $65.Increase in cost = Original cost * 15% = $65 * 0.15 = $9.75.New cost per person = Original cost + Increase in cost = $65 + $9.75 = $74.75. The new cost per person would be approximately $74.75 after a 15% increase.",
+        },
+    ]
+}
