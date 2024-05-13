@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { quiz1 } from '../../db/verbal_reasoning_ques_db/verbal_reasoning';
+import { quiz3 } from '../../db/situational_judgement_db/situational_judgement';
 import Result from './Result';
 import { initial_result } from './store_result';
 
 const Quiz = () => {
-  const quizData = quiz1;
+  const quizData = quiz3;
 
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isFinish, setIsFinish] = useState(false);
   const [result, setResult] = useState(initial_result);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(900); // 15 minutes = 900 seconds
+  const [timer, setTimer] = useState(600); 
 
   useEffect(() => {
     const timerInterval = setInterval(() => {
@@ -98,10 +98,10 @@ const Quiz = () => {
                 <div key={index} style={{ display: index === activeQuestion ? 'block' : 'none' }}>
                   {question.type === 'MCQ' && (
                     <>
-                      <div className="text-sm leading-6 mx-4">{question.attachement}</div>
                       <span>
                         <h3 className="font-bold px-8 py-4">Q{index + 1}: {question.question}</h3>
                       </span>
+                      <div className="text-sm leading-6 mx-4">{question.attachement}</div>
                       <div className="pl-8">
                         {question.options.map((option, optionIndex) => (
                           <div key={optionIndex}>

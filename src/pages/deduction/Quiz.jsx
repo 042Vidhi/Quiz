@@ -1,33 +1,19 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
-import { quiz2 } from '../../db/numerical_ques_db/numerical';
+import { quiz4 } from '../../db/deduction_ques_db/deduction';
 import Result from './Result';
 import {initial_result} from './store_result'
 
 const Quiz = () => {
-    const quizData = quiz2;
+    const quizData = quiz4;
 
     const [activeQuestion, setActiveQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isFinish, setIsFinish] = useState(false);
     const [result, setResult] = useState(initial_result);
     const [score, setScore] = useState(0);
-    const [timer, setTimer] = useState(900); // 15 minutes = 900 seconds
-
-    useEffect(() => {
-      const timerInterval = setInterval(() => {
-        if (timer > 0) {
-          setTimer((prevTimer) => prevTimer - 1);
-        } else {
-          setIsFinish(true);
-          clearInterval(timerInterval);
-        }
-      }, 1000);
   
-      return () => clearInterval(timerInterval);
-    }, [timer]);
-  
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
   
     const handleNext = () => {
       setActiveQuestion((prevQuestion) => Math.min(prevQuestion + 1, quizData.totalQuestions - 1));
@@ -57,10 +43,6 @@ const Quiz = () => {
         else if (question.user_ans.trim() === "") {
           return { ...question, isCorrect: "Skipped" };
         }
-        else if (question.type === "Floating Type" && question.user_ans.trim().toLowerCase() === question.correct_ans.trim().toLowerCase()) {
-          count++;
-          return { ...question, isCorrect: "Yes" };
-        }
         else {
           return { ...question, isCorrect: "No" };
         }
@@ -69,7 +51,6 @@ const Quiz = () => {
       setResult(updatedResult);
       setIsFinish(true);
     };
-    
     
     
     const handleSaveAns = (index) => {
@@ -96,21 +77,13 @@ const Quiz = () => {
           <div>
             <h1 className='text-center font-medium text-xl py-2'>{quizData.quizName}</h1>
             <p className='text-center text-sm py-2'>Category: {quizData.category}</p>
-            <div className='w-full flex justify-center'>
-
-            <div className="text-white px-1 rounded-sm text-center mb-4 bg-blue-500 w-fit">
-              Time Remaining: {Math.floor(timer / 60)}:{timer % 60 < 10 ? `0${timer % 60}` : timer % 60}
-            </div>
-            </div>
             <section className='flex'>
             <div className='w-[75%]'>
               {quizData.questions.map((question, index) => (
                 <div key={index} style={{ display: index === activeQuestion ? 'block' : 'none' }}>
                   {question.type === "MCQ" && (
                     <>
-                      <div className='text-sm leading-6 mx-4'>
-                      <img src={question?.attachment} alt={`Question ${index + 1}`} />
-                      </div>
+                      <div className='text-sm leading-6 mx-4'>{question.attachement}</div>
                       <span>
                         <h3 className='font-bold px-8 py-4'>Q{index + 1}: {question.question}</h3>
                       </span>
@@ -131,21 +104,7 @@ const Quiz = () => {
                       </div>
                     </>
                   )}
-                  {
-                    question.type === "Floating Type" &&
-                    <div> 
-                      <div className='text-sm leading-6 mx-4'>
-                       <img src={question?.attachment} alt={`Question ${index + 1}`} />
-                      </div>
-                    <span>
-                        <h3 className='font-bold px-8 py-4'>Q{index + 1}: {question.question}</h3>
-                      </span>
-                      <span>
-                      <input type="text" className='border-2 mx-8  border-slate-300'/>
-
-                      </span>
-                    </div>
-                  }
+                  {/* Add similar conditionals for other types of questions if needed */}
                 </div>
               ))}
               <div className='text-white flex space-x-8 pt-8'>
@@ -172,7 +131,7 @@ const Quiz = () => {
                 {/* Questions navigation */}
                 <div className='w-[25%] h-[500px]  flex flex-col items-center justify-between'>
                   <div className='flex gap-4 flex-wrap'>
-                    {Array.from({ length: quizData.totalQuestions }, (_, index) => (
+                    {Array.from({ length: 25 }, (_, index) => (
                         <div
                             key={index}
                             className="box bg-green-400 w-[50px] h-[50px] flex items-center justify-center text-white rounded-md text-xl cursor-pointer"

@@ -1,31 +1,18 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
-import { quiz2 } from '../../db/numerical_ques_db/numerical';
+import { quiz7 } from '../../db/MBTI/MBTI';
 import Result from './Result';
 import {initial_result} from './store_result'
+import LikertScale from '../../components/LikertScale';
 
 const Quiz = () => {
-    const quizData = quiz2;
+    const quizData = quiz7;
 
     const [activeQuestion, setActiveQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isFinish, setIsFinish] = useState(false);
     const [result, setResult] = useState(initial_result);
     const [score, setScore] = useState(0);
-    const [timer, setTimer] = useState(900); // 15 minutes = 900 seconds
-
-    useEffect(() => {
-      const timerInterval = setInterval(() => {
-        if (timer > 0) {
-          setTimer((prevTimer) => prevTimer - 1);
-        } else {
-          setIsFinish(true);
-          clearInterval(timerInterval);
-        }
-      }, 1000);
-  
-      return () => clearInterval(timerInterval);
-    }, [timer]);
   
     // const navigate = useNavigate();
   
@@ -96,56 +83,22 @@ const Quiz = () => {
           <div>
             <h1 className='text-center font-medium text-xl py-2'>{quizData.quizName}</h1>
             <p className='text-center text-sm py-2'>Category: {quizData.category}</p>
-            <div className='w-full flex justify-center'>
-
-            <div className="text-white px-1 rounded-sm text-center mb-4 bg-blue-500 w-fit">
-              Time Remaining: {Math.floor(timer / 60)}:{timer % 60 < 10 ? `0${timer % 60}` : timer % 60}
-            </div>
-            </div>
             <section className='flex'>
-            <div className='w-[75%]'>
+            <div className='w-[100%]'>
               {quizData.questions.map((question, index) => (
                 <div key={index} style={{ display: index === activeQuestion ? 'block' : 'none' }}>
-                  {question.type === "MCQ" && (
-                    <>
-                      <div className='text-sm leading-6 mx-4'>
-                      <img src={question?.attachment} alt={`Question ${index + 1}`} />
-                      </div>
-                      <span>
-                        <h3 className='font-bold px-8 py-4'>Q{index + 1}: {question.question}</h3>
-                      </span>
-                      <div className='pl-8'>
-                        {question.options.map((option, optionIndex) => (
-                          <div key={optionIndex}>
-                            <label>
-                              <input
-                                type="radio"
-                                value={option}
-                                onChange={() => handleOptionSelect(option)}
-                                checked={selectedAnswer === option}
-                              />
-                              {option}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  )}
                   {
-                    question.type === "Floating Type" &&
-                    <div> 
-                      <div className='text-sm leading-6 mx-4'>
-                       <img src={question?.attachment} alt={`Question ${index + 1}`} />
-                      </div>
-                    <span>
-                        <h3 className='font-bold px-8 py-4'>Q{index + 1}: {question.question}</h3>
-                      </span>
-                      <span>
-                      <input type="text" className='border-2 mx-8  border-slate-300'/>
+                    <div>
 
-                      </span>
+                    <LikertScale question={question.question}/>
+                    <LikertScale question={question.question}/>
+
+                    <LikertScale question={question.question}/>
+
+                    <LikertScale question={question.question}/>
                     </div>
                   }
+                    
                 </div>
               ))}
               <div className='text-white flex space-x-8 pt-8'>
@@ -169,23 +122,7 @@ const Quiz = () => {
             </div>
 
                
-                {/* Questions navigation */}
-                <div className='w-[25%] h-[500px]  flex flex-col items-center justify-between'>
-                  <div className='flex gap-4 flex-wrap'>
-                    {Array.from({ length: quizData.totalQuestions }, (_, index) => (
-                        <div
-                            key={index}
-                            className="box bg-green-400 w-[50px] h-[50px] flex items-center justify-center text-white rounded-md text-xl cursor-pointer"
-                            onClick={() => handleQuesNavigation(index)}
-                        >
-                            {index + 1}
-                        </div>
-                    ))}
-                  </div>
-                <button className='bg-red-500 w-[50%] p-2 rounded-md text-white' onClick={handleScore}>
-                    Finish
-                </button>
-                </div>
+               
 
 
             </section>

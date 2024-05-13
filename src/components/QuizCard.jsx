@@ -9,7 +9,7 @@ const QuizCard = ({ quizDetails }) => {
   };
 
   return (
-    <div className='w-[300px] bg-blue-50 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300'>
+    <div className='w-[300px] bg-blue-50 p-4 m-4 rounded-lg shadow-md hover:shadow-lg transition duration-300'>
       <p className='text-lg text-gray-800 mb-2'>Assessment</p>
       <p className='text-xl font-semibold text-gray-800 mb-2'>{quizDetails.quiz}</p>
       <p className='text-sm text-gray-600 mb-4'>Category: {quizDetails.category}</p>
