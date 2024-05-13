@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
 import { quiz4 } from '../../db/deduction_ques_db/deduction';
 import Result from './Result';
@@ -12,6 +12,21 @@ const Quiz = () => {
     const [isFinish, setIsFinish] = useState(false);
     const [result, setResult] = useState(initial_result);
     const [score, setScore] = useState(0);
+    const [timer, setTimer] = useState(1200); 
+
+    useEffect(() => {
+      const timerInterval = setInterval(() => {
+        if (timer > 0) {
+          setTimer((prevTimer) => prevTimer - 1);
+        } else {
+          setIsFinish(true);
+          clearInterval(timerInterval);
+        }
+      }, 1000);
+  
+      return () => clearInterval(timerInterval);
+    }, [timer]);
+  
   
     const navigate = useNavigate();
   
@@ -77,6 +92,12 @@ const Quiz = () => {
           <div>
             <h1 className='text-center font-medium text-xl py-2'>{quizData.quizName}</h1>
             <p className='text-center text-sm py-2'>Category: {quizData.category}</p>
+            <div className='w-full flex justify-center'>
+
+            <div className="text-white px-1 rounded-sm text-center mb-4 bg-blue-500 w-fit">
+              Time Remaining: {Math.floor(timer / 60)}:{timer % 60 < 10 ? `0${timer % 60}` : timer % 60}
+            </div>
+            </div>
             <section className='flex'>
             <div className='w-[75%]'>
               {quizData.questions.map((question, index) => (
@@ -129,18 +150,18 @@ const Quiz = () => {
 
                
                 {/* Questions navigation */}
-                <div className='w-[25%] h-[500px]  flex flex-col items-center justify-between'>
-                  <div className='flex gap-4 flex-wrap'>
-                    {Array.from({ length: 25 }, (_, index) => (
-                        <div
-                            key={index}
-                            className="box bg-green-400 w-[50px] h-[50px] flex items-center justify-center text-white rounded-md text-xl cursor-pointer"
-                            onClick={() => handleQuesNavigation(index)}
-                        >
-                            {index + 1}
-                        </div>
+                <div className="w-[25%] h-[500px]  flex flex-col items-center justify-between">
+                  <div className="flex gap-4 flex-wrap">
+                    {Array.from({ length: quizData.totalQuestions }, (_, index) => (
+                      <div
+                        key={index}
+                        className={`box w-10 h-10 flex items-center justify-center text-white rounded-md text-xl cursor-pointer ${index === activeQuestion ? 'bg-blue-500' : 'bg-green-400'}`}
+                        onClick={() => handleQuesNavigation(index)}
+                      >
+                        {index + 1}
+                      </div>
                     ))}
-                  </div>
+              </div>
                 <button className='bg-red-500 w-[50%] p-2 rounded-md text-white' onClick={handleScore}>
                     Finish
                 </button>

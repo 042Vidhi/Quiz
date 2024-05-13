@@ -43,7 +43,7 @@ export const allquiz = [
         quiz:"Stroop Test",
         category:"Personality",
         totalQuestions:10,
-        totalTime:"2 mins",
+        totalTime:"15 mins",
         quizId:6,
         endpoint:"stroop",
     },

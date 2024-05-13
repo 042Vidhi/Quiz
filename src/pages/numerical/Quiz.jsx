@@ -170,18 +170,18 @@ const Quiz = () => {
 
                
                 {/* Questions navigation */}
-                <div className='w-[25%] h-[500px]  flex flex-col items-center justify-between'>
-                  <div className='flex gap-4 flex-wrap'>
+                <div className="w-[25%] h-[500px]  flex flex-col items-center justify-between">
+                  <div className="flex gap-4 flex-wrap">
                     {Array.from({ length: quizData.totalQuestions }, (_, index) => (
-                        <div
-                            key={index}
-                            className="box bg-green-400 w-[50px] h-[50px] flex items-center justify-center text-white rounded-md text-xl cursor-pointer"
-                            onClick={() => handleQuesNavigation(index)}
-                        >
-                            {index + 1}
-                        </div>
+                      <div
+                        key={index}
+                        className={`box w-10 h-10 flex items-center justify-center text-white rounded-md text-xl cursor-pointer ${index === activeQuestion ? 'bg-blue-500' : 'bg-green-400'}`}
+                        onClick={() => handleQuesNavigation(index)}
+                      >
+                        {index + 1}
+                      </div>
                     ))}
-                  </div>
+              </div>
                 <button className='bg-red-500 w-[50%] p-2 rounded-md text-white' onClick={handleScore}>
                     Finish
                 </button>

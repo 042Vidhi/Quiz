@@ -101,7 +101,7 @@ const Quiz = () => {
                       <span>
                         <h3 className="font-bold px-8 py-4">Q{index + 1}: {question.question}</h3>
                       </span>
-                      <div className="text-sm leading-6 mx-4">{question.attachement}</div>
+                      <pre className="text-sm leading-6 mx-4">{question.attachement}</pre>
                       <div className="pl-8">
                         {question.options.map((option, optionIndex) => (
                           <div key={optionIndex}>
