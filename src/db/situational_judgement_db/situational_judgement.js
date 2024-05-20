@@ -70,7 +70,7 @@ export const quiz3 ={
             attachement:`\tA.	Immediately retract the campaign and issue a correction.\n\tB.  Wait for customer complaints before taking action.\n\tC.	Ignore the error and continue with the campaign as planned.\n\tD.	Inform the marketing team about the error and brainstorm solutions.\n\tE.	Consult with legal counsel before making any decisions.
             `,
             question:"As a marketing coordinator, you realize that a promotional campaign you launched contains incorrect information. What should you do first?",
-            options : ["True","ADBEC","Cannot Tell"],
+            options : ["ADCBE","ADBEC","ADBCE"],
             correctAnswer:"ADBEC",
             explanation:"",
         },

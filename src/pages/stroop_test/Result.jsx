@@ -1,10 +1,13 @@
 import React from 'react'
 
-const Result = ({score}) => {
+const Result = ({correct,wrong}) => {
+  let interpretation  = ''
+  
   return (
-    <><div>Score</div>
-        <p>{score}</p>
-    </>
+    <div className='text-2xl text-semibold text-blue-800 text-center'>Results
+        <p>Correct: {correct}</p>
+        <p>Wrong: {wrong}</p>
+    </div>
   )
 }
 

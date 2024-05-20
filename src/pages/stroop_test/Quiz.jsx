@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Progress } from 'antd';
+import Results from './Result';
 
 const Quiz = () => {
 
@@ -83,7 +84,7 @@ useEffect(() => {
 
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-200">
 
     {
       !isFinish  ? ( 
@@ -115,9 +116,7 @@ useEffect(() => {
         </div>
       )
       :(
-        <div className='text-2xl text-semibold text-blue-800 text-center'>Results
-        <p>Correct: {correct}</p>
-        <p>Wrong: {wrong}</p></div>
+        <Results correct={correct} wrong={wrong}/>
       )
     }
      

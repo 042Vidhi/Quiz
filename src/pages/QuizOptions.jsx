@@ -4,10 +4,10 @@ import QuizCard from '../components/QuizCard'
 
 const QuizOptions = () => {
   return (
-    //display all the quiz options using quizcards
     
     <div>
-        <h1 className='text-center py-4 text-xl'>Competency Evaluation Center <br/>Assess Your Skills and Knowledge</h1>
+        <h1 className='text-center pt-4 md:text-4xl text-xl font-semibold text-slate-900'>Competency Evaluation Center </h1>
+          <h2 className='text-center py-2 md:text-2xl text-lg font-semibold text-slate-700'>Assess Your Skills and Knowledge</h2>
         <div className='flex justify-evenly flex-wrap'>
             {
                 allquiz.map((quiz)=>
