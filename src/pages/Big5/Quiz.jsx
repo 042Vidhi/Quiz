@@ -36,15 +36,32 @@ const handleSaveAns = () => {
   const updatedScore = { ...score };
   // Loop through the next 6 questions and update their answers in the result
   for (let i = activeQuestions; i < activeQuestions + 6 && i < quizData.totalQuestions; i++) {
+
+    let anscal = 0;
+    if(quizData.questions[i].scoretype === "normal")
+    {
+        anscal = selectedAnswers[i];
+    }
+    else if(quizData.questions[i].scoretype==="reverse")
+    {
+          if(selectedAnswers[i]===0 || selectedAnswers[i]===null)
+            {
+              anscal = 0;
+            }
+            else {
+              anscal = 8 - selectedAnswers[i];
+            }
+    }
+
     const updatedQuestion = {
       Sno: i + 1,
       ques: quizData.questions[i].question,
-      ans: (selectedAnswers[i]===0 || quizData.questions[i].scoretype==="normal")?selectedAnswers[i]:8-selectedAnswers[i], 
+      ans: anscal,
       type:quizData.questions[i].type,
     };
     updatedResult.push(updatedQuestion);
 
-    const s = (selectedAnswers[i]===0 || quizData.questions[i].scoretype === "normal" ) ? selectedAnswers[i] : 8 - selectedAnswers[i];
+    const s = anscal
     
     // Update score based on question type
     switch (quizData.questions[i].type) {

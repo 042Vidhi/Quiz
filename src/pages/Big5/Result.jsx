@@ -7,6 +7,7 @@ import o from '../../assets/big5/o.png';
 import c from '../../assets/big5/c.png';
 import n from '../../assets/big5/n.png';
 
+
 const Result = ({ results, finalScore }) => {
   const user = {
     O: finalScore.O,
@@ -58,7 +59,7 @@ const Result = ({ results, finalScore }) => {
                 </div>
               </td>
               <td>
-                <Progress percent={user.O} steps={8} size={[50, 20]} />
+                <Progress percent={user.O} steps={8}  size={[50, 20]} />
                 <Progress percent={globaluser.O} steps={8} strokeColor="red" size={[50, 20]} />
               </td>
               
@@ -137,7 +138,7 @@ const Result = ({ results, finalScore }) => {
                 </div>
               </td>
               <td>
-                <Progress percent={user.O} steps={8} size={[50, 20]} />
+                <Progress percent={user.O} steps={8} size={[50, 20]}  />
               </td>
             </tr>
             <tr>
