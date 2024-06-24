@@ -39,7 +39,7 @@ const handleClick = () => {
     setWrong(wrong + 1);
   }
   resetText(); 
-  setQuestionTimer(0);
+  setQuestionTimer(45);
 };
 
 const wait = () => {
